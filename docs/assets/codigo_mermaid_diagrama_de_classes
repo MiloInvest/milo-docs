@@ -1,0 +1,99 @@
+classDiagram
+    direction LR
+
+    class Usuario {
+        -id
+        -String nome
+        -String email
+        -String senhaHash
+        -TipoUsuario tipo
+        +login()
+        +logout()
+        +criarConta()
+    }
+
+    class Carteira {
+        -id
+        -usuarioId
+        +calcularTotalInvestido()
+        +calcularTotalAtual()
+        +calcularRentabilidade()
+        +obterEvolucaoPatrimonio()
+        +adicionarOperacao(Operacao op)
+        +adicionarProvento(Provento prov)
+    }
+
+    class Posicao {
+        -id
+        -int quantidade
+        -float precoMedio
+        -float valorTotalInvestido
+        -float valorAtual
+        +recalcular(Operacao op)
+    }
+
+    class Ativo {
+        -String ticker
+        -String nomeEmpresa
+        -TipoAtivo tipo
+        -float cotacaoAtual
+        +atualizarCotacao()
+    }
+
+    class Operacao {
+        <<Abstract>>
+        -id
+        -Date data
+        -int quantidade
+        -float precoUnitario
+        -float valorTotal
+    }
+
+    class Compra {
+        +execute()
+    }
+
+    class Venda {
+        -float lucroPrejuizo
+        +execute()
+    }
+
+    class Provento {
+        -id
+        -TipoProvento tipo
+        -Date dataPagamento
+        -float valorRecebido
+    }
+
+    class TipoUsuario {
+        <<Enumeration>>
+        PADRAO
+        ADMIN
+    }
+
+    class TipoAtivo {
+        <<Enumeration>>
+        ACAO
+        FII
+        BDR
+        STOCK
+    }
+
+    class TipoProvento {
+        <<Enumeration>>
+        DIVIDENDO
+        JCP
+        RENDIMENTO
+    }
+
+    Usuario "1" -- "1" Carteira : possui
+    Carteira "1" -- "0..*" Posicao : é composta por
+    Carteira "1" -- "0..*" Operacao : tem histórico de
+    Carteira "1" -- "0..*" Provento : tem histórico de
+    
+    Posicao "1" -- "1" Ativo : refere-se a
+    Operacao "1" -- "1" Ativo : sobre o
+    Provento "1" -- "1" Ativo : recebido de
+
+    Operacao <|-- Compra
+    Operacao <|-- Venda
