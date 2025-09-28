@@ -1,0 +1,40 @@
+site_name: Documentação Milo Invest
+site_url: https://<sua-organizacao>.github.io/milo-docs/
+site_author: Equipe Milo Invest
+repo_url: https://github.com/milo-invest/milo-docs
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: pt
+  logo: assets/logo.png
+  favicon: assets/logo.png
+  palette:
+    - scheme: default
+      primary: custom
+      accent: indigo
+  extra_css:
+    - stylesheets/extra.css
+
+extra:
+  theme:
+    palette:
+      primary: '#0f172a'
+
+nav:
+  - 'Início': index.md
+  - 'Guia do Usuário':
+    - 'Primeiros Passos': guia-usuario/primeiros-passos.md
+  - 'Guia do Desenvolvedor':
+    - 'Ambiente de Desenvolvimento': guia-desenvolvedor/ambiente-dev.md
+    - 'Arquitetura do Projeto': guia-desenvolvedor/arquitetura.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+  - toc:
+      permalink: true
