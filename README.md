@@ -19,7 +19,7 @@ Para visualizar o site de documentação em sua máquina local, fazer alteraçõ
 
 1.  **Clone o repositório:**
     ```bash
-    git clone [https://github.com/MiloInvest/milo-docs.git](https://github.com/MiloInvest/milo-docs.git)
+    git clone https://github.com/MiloInvest/milo-docs.git
     cd milo-docs
     ```
 
