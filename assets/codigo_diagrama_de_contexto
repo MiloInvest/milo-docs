@@ -1,0 +1,11 @@
+C4Context
+    title Diagrama de Contexto do Sistema
+    
+    Person(investidor, "Investidor", "Usuário que acompanha e gerencia sua carteira de investimentos.")
+    
+    System(plataforma_ativo, "Plataforma Milo", "Permite que investidores consolidem e analisem o desempenho de suas carteiras de investimentos.")
+
+    System_Ext(brapi, "Brapi API", "Provedor externo de dados do mercado financeiro (cotações, etc.).")
+    
+    Rel(investidor, plataforma_ativo, "Consulta e gerencia a carteira de investimentos")
+    Rel(plataforma_ativo, brapi, "Busca cotações e informações de ativos", "HTTPS/JSON")

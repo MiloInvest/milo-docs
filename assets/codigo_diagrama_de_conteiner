@@ -1,0 +1,24 @@
+C4Container
+    title Diagrama de Contêineres
+    
+    System_Boundary(c1, "Plataforma Ativo") {
+        Container(spa, "Aplicação Web", "JavaScript, NextJs")
+
+        Container(reverse_proxy, "Reverse Proxy", "Nginx", "Recebe requisições HTTPS e direciona para a API principal.")
+        
+        Container(api, "API", "NestJs")
+        
+        ContainerDb(db_principal, "Banco de Dados", "PostgreSQL")
+    }
+
+    Person(investidor, "Investidor", "Usuário que acompanha e gerencia sua carteira de investimentos.")
+
+    System_Ext(brapi, "Brapi API", "Provedor externo de dados do mercado financeiro.")
+
+    Rel(investidor, spa, "Usa", "HTTPS")
+    Rel(spa, reverse_proxy, "")
+
+    Rel(reverse_proxy, api, "")
+    Rel(api, db_principal, "")
+
+    Rel(api, brapi, "Busca cotações de ativos", "HTTPS/JSON")
